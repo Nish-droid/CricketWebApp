@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Game Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Game Manager</h1>
+    <main>
+        <section id="create-team">
+            <h2>Create Team</h2>
+            <form id="team-form">
+                <label for="team-name">Team Name:</label>
+                <input type="text" id="team-name" required>
+                <button type="submit">Create Team</button>
+            </form>
+        </section>
+
+        <section id="create-players">
+            <h2>Create Player</h2>
+            <form id="player-form">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" required>
+                <label for="team-select">Select Team</label>
+                <select id="team-select" required>
+                    <!-- Options will be populated by Javascript-->
+                </select>
+                <button type="submit">Create Player</button>
+            </form>
+        </section>
+
+        <section id="teams">
+            <h2>Teams</h2>
+            <ul id="team-list">
+                <!-- Teams will be listed here -->
+            </ul>
+        </section>
+        <section id="players">
+            <h2>Players</h2>
+            <ul id="player-list">
+                <!-- Players will be listed here -->
+            </ul>
+        </section>
+
+        <section id="matches">
+            <h2>Matches</h2>
+            <button id="play-match">Play Match</button>
+            <div id="match-result">
+                <!-- Match result will be displayed here -->
+            </div>
+        </section>
+
+        <section id="rankings">
+            <h2>Rankings</h2>
+            <ul id="ranking-list">
+                <!-- Team Rankings will be listed here -->
+            </ul>
+        </section>
+
+    </main>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
