@@ -48,7 +48,17 @@
 
         <section id="matches">
             <h2>Matches</h2>
-            <button id="play-match">Play Match</button>
+            <form id="match-form">
+                <label for="team1-select">Select Team 1:</label>
+                <select id="team1-select" required>
+                    <!-- Option to select team1 will be populated by JS-->
+                </select>
+                <label for="team2-select">Select Team2:</label>
+                <select id="team2-select" required>
+                    <!-- Option to select team2 will be populated by JS-->
+                </select>
+                <button type="submit">Play Match</button>
+            </form>
             <div id="match-result">
                 <!-- Match result will be displayed here -->
             </div>

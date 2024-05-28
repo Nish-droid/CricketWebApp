@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const teamSelect = document.getElementById('team-select');
     const teamList = document.getElementById('team-list');
     const playerList = document.getElementById('player-list');
-    const playMatchButton = document.getElementById('play-match');
+    const matchForm = document.getElementById('match-form');
+    const team1Select = document.getElementById('team1-select');
+    const team2Select = document.getElementById('team2-select');
     const matchResultDiv = document.getElementById('match-result');
     const rankingList = document.getElementById('ranking-list');
 
@@ -20,7 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
             teams.push(teamName);
             rankings[teamName] = 0;
             updateTeamList();
-            updateTeamSelect();
+            updateTeamSelects();
+        } else {
+            alert('Team name is either empty or already exists');
         }
         teamForm.reset();
     });
@@ -29,30 +33,27 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         const playerName = document.getElementById('player-name').value;
         const teamName = document.getElementById('team-select').value;
-        if (playerName && teamName) {
+        if (playerName && teamName && !players.some(player => player.name === playerName)) {
             players.push({ name: playerName, team: teamName });
             updatePlayerList();
+        } else {
+            alert('Player name is either empty or already exists');
         }
         playerForm.reset();
     })
 
-    playMatchButton.addEventListener('click', () => {
-        if (teams.length < 2) {
-            alert(`Need at least 2 teams to play a match`);
-            return;
+    matchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const team1 = document.getElementById('team1-select').value;
+        const team2 = document.getElementById('team2-select').value;
+        if (team1 && team2 && team1 !== team2) {
+            const winner = Math.random() > 0.5 ? team1 : team2;
+            rankings[winner]++;
+            matchResultDiv.innerHTML = `Match played between ${team1} and ${team2}. Winner: ${winner}`;
+            updateRankingList();
+        } else {
+            alert('Please select two different teams');
         }
-
-        const team1 = teams[Math.floor(Math.random() * teams.length)];
-        let team2;
-        do {
-            team2 = teams[Math.floor(Math.random() * teams.length)];
-        } while (team1 === team2);
-
-        const winner = Math.random() > 0.5 ? team1 : team2;
-
-        rankings[winner]++;
-        matchResultDiv.innerHTML = `Match played between ${team1} and ${team2}. Winner: ${winner}`;
-        updateRankingList();
     });
 
     function updateTeamList() {
@@ -64,13 +65,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function updateTeamSelect() {
+    function updateTeamSelects() {
         teamSelect.innerHTML = '';
+        team1Select.innerHTML = '';
+        team2Select.innerHTML = '';
+
         teams.forEach(team => {
             const option = document.createElement('option');
             option.value = team;
             option.textContent = team;
             teamSelect.appendChild(option);
+
+            const option1 = option.cloneNode(true);
+            team1Select.appendChild(option1);
+
+            const option2 = option.cloneNode(true);
+            team2Select.appendChild(option2);
         });
     }
 
