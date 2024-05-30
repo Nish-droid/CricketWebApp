@@ -1,7 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
+
+    console.log("hello");
+    console.log(urlParams);
+
     const team1 = urlParams.get('team1');
     const team2 = urlParams.get('team2');
+
+    console.log(team1);
+    console.log(team2);
 
     if (!team1 || !team2) {
         alert('Invalid teams selected.');
@@ -16,12 +23,12 @@ document.addEventListener("DOMContentLoaded", () => {
     let team1Runs = 0;
     let team2Runs = 0;
 
-    window.addRun = function (team) {
+    window.addRun = function (team, runs) {
         if (team === 'team1') {
-            team1Runs++;
+            team1Runs += runs;
             document.getElementById('team1-runs').textContent = team1Runs;
         } else if (team === 'team2') {
-            team2Runs++;
+            team2Runs += runs;
             document.getElementById('team2-runs').textContent = team2Runs;
         }
     };
@@ -47,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         localStorage.setItem('rankings', JSON.stringify(rankings));
 
+        // Redirect back to the main page after a delay
         setTimeout(() => {
             window.location.href = 'index.html';
         }, 3000);
