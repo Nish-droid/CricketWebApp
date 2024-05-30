@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const matchForm = document.getElementById('match-form');
     const team1Select = document.getElementById('team1-select');
     const team2Select = document.getElementById('team2-select');
-    const matchResultDiv = document.getElementById('match-result');
+    // const matchResultDiv = document.getElementById('match-result');
     const rankingList = document.getElementById('ranking-list');
 
     let teams = [];
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     teamForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const teamName = document.getElementById('team-name').value;
+        const teamName = document.getElementById('team-name').value.trim();
         if (teamName && !teams.includes(teamName)) {
             teams.push(teamName);
             rankings[teamName] = 0;
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     playerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const playerName = document.getElementById('player-name').value;
+        const playerName = document.getElementById('player-name').value.trim();
         const teamName = document.getElementById('team-select').value;
         if (playerName && teamName && !players.some(player => player.name === playerName)) {
             players.push({ name: playerName, team: teamName });
@@ -47,10 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const team1 = document.getElementById('team1-select').value;
         const team2 = document.getElementById('team2-select').value;
         if (team1 && team2 && team1 !== team2) {
-            const winner = Math.random() > 0.5 ? team1 : team2;
-            rankings[winner]++;
-            matchResultDiv.innerHTML = `Match played between ${team1} and ${team2}. Winner: ${winner}`;
-            updateRankingList();
+            // Redirect to match page with selected teams as URL params
+            window.location.href = `match.html?team1=${encodeURIComponent(team1)}&team2=${encodeURIComponent(team2)}`;
+            // const winner = Math.random() > 0.5 ? team1 : team2;
+            // rankings[winner]++;
+            // matchResultDiv.innerHTML = `Match played between ${team1} and ${team2}. Winner: ${winner}`;
+            // updateRankingList();
         } else {
             alert('Please select two different teams');
         }

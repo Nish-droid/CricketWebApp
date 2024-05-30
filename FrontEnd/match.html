@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lan="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Match</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Cricket Match</h1>
+    </header>
+    <main>
+        <section id="match-details">
+            <h2>Match Details</h2>
+            <p id="team-names"></p>
+        </section>
+        <section id="scoreboard">
+            <h2>scoreboard</h2>
+            <div id="team1-score">
+                <h3>Team 1</h3>
+                <p id="Team1-name"></p>
+                <p>Runs: <span id="team1-runs">0</span></p>
+                <button onclick="addrun('team1')">Add Run</button>
+            </div>
+            <div id="team2-score">
+                <h3>Team 2</h3>
+                <p id="Team2-name"></p>
+                <p>Runs: <span id="team2-runs">0</span></p>
+                <button onclick="addrun('team2')">Add Run</button>
+            </div>
+        </section>
+        <section id="result">
+            <h2>Result</h2>
+            <button id="end-match" onclick="endMatch()">End Match</button>
+            <p id="match-result"></p>
+        </section>
+    </main>
+    <script src="match.js"></script>
+</body>
+
+</html>
