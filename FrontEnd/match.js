@@ -21,17 +21,60 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('team2-name').textContent = team2;
 
     let team1Runs = 0;
+    let team1Balls = 0;
+    let team1Overs = 0;
     let team2Runs = 0;
+    let team2Balls = 0;
+    let team2Overs = 0;
+    let currentTeam = '';
 
     window.addRun = function (team, runs) {
         if (team === 'team1') {
             team1Runs += runs;
+            team1Balls++;
+            if (team1Balls === 6) {
+                team1Overs++;
+                team1Balls = 0;
+            }
             document.getElementById('team1-runs').textContent = team1Runs;
+            document.getElementById('team1-overs').textContent = `${team1Overs}.${team1Balls}`;
         } else if (team === 'team2') {
             team2Runs += runs;
+            team2Balls++;
+            if (team2Balls === 6) {
+                team2Overs++;
+                team2Balls = 0;
+            }
             document.getElementById('team2-runs').textContent = team2Runs;
+            document.getElementById('team2-overs').textContent = `${team1Overs}.${team1Balls}`;
         }
     };
+
+    window.showWicketOptions = function (team) {
+        currentTeam = team;
+        document.getElementById('wicket-section').style.display = 'block';
+    }
+
+    window.addWicket = function () {
+        const wicketType = document.getElementById('wicket-type').value;
+        if (currentTeam === 'team1') {
+            team1Balls++;
+            if (team1Balls === 6) {
+                team1Overs++;
+                team1Balls = 0;
+            }
+            document.getElementById('team1-overs').textContent = `${team1Overs}.${team1Balls}`;
+        } else if (currentTeam === 'team2') {
+            team2Balls++;
+            if (team2Balls === 6) {
+                team2Overs++;
+                team2Balls = 0;
+            }
+            document.getElementById('team2-overs').textContent = `${team2Overs}.${team2Balls}`;
+        }
+        alert(`${currentTeam} wicket: ${wicketType}`);
+        document.getElementById('wicket-section').style.display = 'none';
+    }
 
     window.endMatch = function () {
         let result;

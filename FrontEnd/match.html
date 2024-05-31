@@ -18,11 +18,12 @@
             <p id="team-names"></p>
         </section>
         <section id="scoreboard">
-            <h2>scoreboard</h2>
+            <h2>Scoreboard</h2>
             <div id="team1-score">
                 <h3>Team 1</h3>
                 <p id="team1-name"></p>
                 <p>Runs: <span id="team1-runs">0</span></p>
+                <p>Overs: <span id="team1-overs">0.0</span></p>
                 <button onclick="addRun('team1', 0)">0</button>
                 <button onclick="addRun('team1', 1)">1</button>
                 <button onclick="addRun('team1', 2)">2</button>
@@ -30,11 +31,13 @@
                 <button onclick="addRun('team1', 4)">4</button>
                 <button onclick="addRun('team1', 5)">5</button>
                 <button onclick="addRun('team1', 6)">6</button>
+                <button onclick="showWicketOptions('team1')">Wicket</button>
             </div>
             <div id="team2-score">
                 <h3>Team 2</h3>
                 <p id="team2-name"></p>
                 <p>Runs: <span id="team2-runs">0</span></p>
+                <p>Overs: <span id="team2-overs">0.0</span></p>
                 <button onclick="addRun('team2', 0)">0</button>
                 <button onclick="addRun('team2', 1)">1</button>
                 <button onclick="addRun('team2', 2)">2</button>
@@ -42,8 +45,19 @@
                 <button onclick="addRun('team2', 4)">4</button>
                 <button onclick="addRun('team2', 5)">5</button>
                 <button onclick="addRun('team2', 6)">6</button>
+                <button onclick="showWicketOptions('team2')">Wicket</button>
             </div>
         </section>
+        <section id="wicket-section" style="display: none;">
+            <h2>Select Wicket Type</h2>
+            <select id="wicket-type">
+                <option value="runout">Runout</option>
+                <option value="bowled">Bowled</option>
+                <option value="catch">Catch</option>
+            </select>
+            <button onclick="addWicket()">Add Wicket</button>
+        </section>
+
         <section id="result">
             <h2>Result</h2>
             <button id="end-match" onclick="endMatch()">End Match</button>
